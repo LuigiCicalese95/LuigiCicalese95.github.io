@@ -1,67 +1,530 @@
 ---
-const githubUsername = 'LuigiCicalese95';
+const path = [
+  {
+    title: 'Informatica',
+    place: 'Università degli Studi di Salerno',
+    detail: 'Formazione tecnica e basi di sviluppo software',
+  },
+  {
+    title: 'Full Stack Software Developer',
+    place: 'Hightek S.r.l.',
+    detail: 'Sviluppo applicazioni end-to-end in ambito professionale',
+  },
+];
+
+/* Sostituisci questi placeholder con i tuoi progetti reali quando pronti */
+const projects = [
+  {
+    title: 'Dashboard analytics',
+    description:
+      'Interfaccia per consultare metriche operative in tempo reale, con filtri e export dei dati.',
+    tags: ['TypeScript', 'React', 'API'],
+    placeholder: true,
+  },
+  {
+    title: 'API di integrazione',
+    description:
+      'Servizio REST per collegare sistemi interni ed esterni, con autenticazione e logging.',
+    tags: ['Node.js', 'SQL', 'REST'],
+    placeholder: true,
+  },
+  {
+    title: 'Tool di automazione',
+    description:
+      'Piccolo utility CLI che automatizza attività ripetitive del flusso di lavoro quotidiano.',
+    tags: ['JavaScript', 'CLI'],
+    placeholder: true,
+  },
+];
 ---
 
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Sito personale e portfolio di sviluppo software."
+      content="Luigi Cicalese — Full Stack Software Developer. Percorso, competenze e progetti."
     />
     <title>Luigi Cicalese | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
+    <header class="hero">
+      <div class="hero__top">
+        <img
+          class="hero__banner"
+          src="/images/banner.png"
+          alt="Banner professionale di Luigi Cicalese, Full Stack Software Developer presso Hightek S.r.l."
+          width="1920"
+          height="540"
+        />
+      </div>
+
+      <div class="hero__bottom">
+        <div class="hero__intro">
+          <p class="hero__bio">
+            Sviluppatore full stack: progetto e realizzo soluzioni software chiare, utili e
+            manutenibili. Unisco il lavoro in Hightek con lo studio in Informatica, curando sia il
+            dettaglio tecnico sia l’esperienza di chi usa il prodotto.
+          </p>
+
+          <ol class="path" aria-label="Percorso">
+            {
+              path.map((step) => (
+                <li class="path__item">
+                  <span class="path__title">{step.title}</span>
+                  <span class="path__place">{step.place}</span>
+                  <span class="path__detail">{step.detail}</span>
+                </li>
+              ))
+            }
+          </ol>
+
+          <div class="hero__links">
+            <a href="#progetti">Vai ai progetti</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__identity">
+        <img
+          class="hero__avatar"
+          src="/images/profile.jpg"
+          alt="Foto profilo di Luigi Cicalese"
+          width="260"
+          height="260"
+        />
+        <div class="hero__info">
+          <h1>Luigi Cicalese</h1>
+          <p class="hero__role">Full Stack Software Developer · Hightek S.r.l.</p>
+        </div>
+      </div>
+    </header>
+
     <main>
-      <h1>Sito in manutenzione</h1>
+      <section class="projects-section" id="progetti" aria-labelledby="progetti-title">
+        <div class="projects-section__head">
+          <h2 id="progetti-title">Progetti</h2>
+          <p>
+            Una selezione di lavori personali e sperimentazioni. I riferimenti qui sotto sono
+            placeholder: li aggiornerò con i progetti reali.
+          </p>
+        </div>
 
-      {/*
-      <p>
-        Benvenuto nel mio sito personale.
-        Qui presenterò il mio percorso,
-        le mie competenze e i miei progetti.
-      </p>
-
-      <a href={`https://github.com/${githubUsername}`}>
-        Visita il mio GitHub
-      </a>
-      */}
-      
+        <ul class="projects">
+          {
+            projects.map((project) => (
+              <li class="project">
+                <div class="project__top">
+                  <h3>{project.title}</h3>
+                  {project.placeholder && <span class="project__badge">Placeholder</span>}
+                </div>
+                <p>{project.description}</p>
+                <ul class="project__tags" aria-label="Tecnologie">
+                  {project.tags.map((tag) => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+                {project.placeholder && <span class="project__soon">In arrivo</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </section>
     </main>
+
+    <footer class="footer">
+      <p>© {new Date().getFullYear()} Luigi Cicalese</p>
+    </footer>
   </body>
 </html>
 
 <style>
+  :root {
+    --navy: #07111f;
+    --navy-mid: #0c1a2e;
+    --teal: #0e9aa7;
+    --teal-soft: #148a96;
+    --ink: #142033;
+    --muted: #5a6b7d;
+    --line: #d7e0ea;
+    --white: #ffffff;
+    --surface: #f5f8fb;
+    --avatar-left: calc(5rem + 20px);
+    --avatar: clamp(100px, min(15vw, calc(38vw - var(--avatar-left))), 260px);
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Source Sans 3', sans-serif;
+    --content: 1100px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     margin: 0;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    font-family: system-ui, sans-serif;
-    background: #101827;
-    color: #f8fafc;
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.55;
   }
 
-  main {
-    max-width: 700px;
-    padding: 2rem;
-  }
-
-  h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-  }
-
-  p {
-    line-height: 1.7;
-    color: #cbd5e1;
+  img {
+    display: block;
+    max-width: 100%;
   }
 
   a {
-    color: #38bdf8;
+    color: var(--teal-soft);
+  }
+
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 560px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .hero__top {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--navy), var(--teal));
+  }
+
+  .hero__banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    opacity: 0;
+    animation: fade-in 1s ease 0.15s both;
+  }
+
+  .hero__bottom {
+    background: var(--white);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: calc(var(--avatar) * 0.2) clamp(1.25rem, 4vw, 3.5rem) 1.5rem;
+  }
+
+  .hero__intro {
+    width: min(34rem, 52%);
+    padding-top: 0.35rem;
+    opacity: 0;
+    animation: fade-up 0.85s ease 1.85s both;
+  }
+
+  .hero__bio {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+    max-width: 42ch;
+  }
+
+  .path {
+    list-style: none;
+    margin: 1.15rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.85rem;
+    border-left: 2px solid #d5e8eb;
+    padding-left: 1rem;
+  }
+
+  .path__item {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .path__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--navy);
+  }
+
+  .path__place {
+    font-size: 0.92rem;
+    color: var(--teal-soft);
+    font-weight: 600;
+  }
+
+  .path__detail {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .hero__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin-top: 1.2rem;
+  }
+
+  .hero__links a {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: var(--navy-mid);
+    border-bottom: 1px solid transparent;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .hero__links a:hover {
+    color: var(--teal-soft);
+    border-bottom-color: var(--teal);
+  }
+
+  .hero__identity {
+    position: absolute;
+    top: 50%;
+    left: var(--avatar-left);
+    translate: 0 calc(var(--avatar) / -2);
+    z-index: 2;
+    width: var(--avatar);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__avatar {
+    width: var(--avatar);
+    height: var(--avatar);
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 58% 18%;
+    border: 5px solid var(--white);
+    box-shadow: 0 12px 32px rgba(7, 17, 31, 0.22);
+    opacity: 0;
+    animation: fade-scale 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
+  }
+
+  .hero__info {
+    margin-top: 0.9rem;
+    width: max-content;
+    max-width: min(28rem, calc(2 * (var(--avatar-left) + var(--avatar) / 2) - 1rem));
+    text-align: center;
+    opacity: 0;
+    animation: fade-up 0.8s ease 1.65s both;
+  }
+
+  .hero__info h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--navy);
+  }
+
+  .hero__role {
+    margin: 0.4rem 0 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--navy-mid);
+  }
+
+  main {
+    background: linear-gradient(180deg, var(--white) 0%, var(--surface) 100%);
+  }
+
+  .projects-section {
+    width: min(100% - 2.5rem, var(--content));
+    margin: 0 auto;
+    padding: 3.5rem 0 4rem;
+  }
+
+  .projects-section__head h2 {
+    margin: 0 0 0.55rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    letter-spacing: -0.02em;
+    color: var(--navy);
+  }
+
+  .projects-section__head p {
+    margin: 0;
+    max-width: 58ch;
+    color: var(--muted);
+  }
+
+  .projects {
+    list-style: none;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 780px) {
+    .projects {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .project {
+    padding: 1.2rem 1.15rem 1.25rem;
+    border-top: 2px solid var(--teal);
+    background: var(--white);
+    transition: transform 0.2s ease;
+  }
+
+  .project:hover {
+    transform: translateY(-2px);
+  }
+
+  .project__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .project h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    color: var(--navy);
+  }
+
+  .project__badge {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--teal-soft);
+    border: 1px solid #b7dbe0;
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+  }
+
+  .project > p {
+    margin: 0.55rem 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .project__tags {
+    list-style: none;
+    margin: 0.85rem 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .project__tags li {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--navy-mid);
+  }
+
+  .project__soon {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .footer {
+    padding: 1.25rem 1.5rem 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    background: var(--surface);
+  }
+
+  .footer p {
+    margin: 0;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      height: auto;
+      min-height: 100svh;
+      grid-template-rows: min(38vh, 260px) auto;
+    }
+
+    .hero__bottom {
+      padding: calc(var(--avatar) / 2 + 6.5rem) 1.25rem 2rem;
+    }
+
+    .hero__intro {
+      width: 100%;
+    }
+
+    .hero__bio {
+      max-width: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .hero__banner,
+    .hero__avatar,
+    .hero__info,
+    .hero__intro {
+      opacity: 1;
+      animation: none;
+    }
+
+    .project:hover {
+      transform: none;
+    }
   }
 </style>
