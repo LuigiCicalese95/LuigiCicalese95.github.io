@@ -1,39 +1,85 @@
 ---
 const path = [
   {
-    title: 'Informatica',
+    title: 'Primi passi nella programmazione',
+    place: 'Dai 16 anni',
+    detail: 'Inizio con C e C++, prima ancora dell’università',
+  },
+  {
+    title: 'Laurea triennale in Informatica',
     place: 'Università degli Studi di Salerno',
-    detail: 'Formazione tecnica e basi di sviluppo software',
+    detail: 'Basi solide di algoritmi, sistemi, web, mobile e basi di dati',
   },
   {
     title: 'Full Stack Software Developer',
     place: 'Hightek S.r.l.',
-    detail: 'Sviluppo applicazioni end-to-end in ambito professionale',
+    detail: 'Dal web (Laravel, React) all’intera infrastruttura software',
+  },
+  {
+    title: 'Magistrale in corso',
+    place: 'Software Engineering and IT Management',
+    detail: 'Approfondimenti su mobile, dati, cloud, IoT e security — in chiusura',
   },
 ];
 
-/* Sostituisci questi placeholder con i tuoi progetti reali quando pronti */
+const skillGroups = [
+  {
+    title: 'Sviluppo',
+    items: ['C / C++', 'Java', 'PHP / Laravel', 'React', 'Web & mobile'],
+  },
+  {
+    title: 'Full stack & infrastruttura',
+    items: ['Backend & frontend', 'Server', 'Docker', 'Prodotti software', 'Documentazione & versioning'],
+  },
+  {
+    title: 'Dati & sistemi',
+    items: ['Basi di dati', 'Progettazione e ottimizzazione', 'Cloud computing', 'Reti e sistemi'],
+  },
+  {
+    title: 'Approfondimenti',
+    items: ['Data Science & ML', 'IoT', 'Penetration testing', 'Ingegneria del software', 'Gestione team'],
+  },
+];
+
 const projects = [
   {
-    title: 'Dashboard analytics',
+    title: 'HandUp',
     description:
-      'Interfaccia per consultare metriche operative in tempo reale, con filtri e export dei dati.',
-    tags: ['TypeScript', 'React', 'API'],
-    placeholder: true,
+      'Applicazione multipiattaforma dedicata alla Lingua dei Segni Italiana (LIS). Un modello di intelligenza artificiale riconosce, tramite fotocamera, i gesti della mano e li associa a lettere o numeri. Include minigiochi educativi e pagine di spiegazione dei gesti, per rendere l’apprendimento accessibile e coinvolgente.',
+    tags: ['Mobile', 'AI / ML', 'Computer vision', 'LIS'],
+    status: 'Completato',
   },
   {
-    title: 'API di integrazione',
+    title: 'GamesTrack',
     description:
-      'Servizio REST per collegare sistemi interni ed esterni, con autenticazione e logging.',
-    tags: ['Node.js', 'SQL', 'REST'],
-    placeholder: true,
+      'Piattaforma web che unifica cataloghi e statistiche di gioco provenienti da fonti diverse (Xbox, PlayStation Network, Steam e altri). Normalizza i dati in un unico database e, con le autorizzazioni dell’utente, aggrega le metriche di gioco: un solo posto per chi gioca su più piattaforme.',
+    tags: ['Web', 'Integrazioni API', 'Database', 'Aggregazione dati'],
+    status: 'Completato',
   },
   {
-    title: 'Tool di automazione',
+    title: 'Layout web per aziende',
     description:
-      'Piccolo utility CLI che automatizza attività ripetitive del flusso di lavoro quotidiano.',
-    tags: ['JavaScript', 'CLI'],
-    placeholder: true,
+      'Serie di layout innovativi pensati per siti aziendali di settori diversi — software house, ristorazione, saloni, studi professionali, e-commerce, palestre, strutture ricettive, associazioni e altri. L’obiettivo è offrire basi grafiche solide e vendibili, adattabili al brand del cliente.',
+    tags: ['UI / layout', 'Web design', 'Branding'],
+    status: 'In corso',
+  },
+];
+
+const contacts = [
+  {
+    label: 'Email',
+    value: 'luigicicalese1995@gmail.com',
+    href: 'mailto:luigicicalese1995@gmail.com',
+  },
+  {
+    label: 'Telefono',
+    value: '+39 340 993 4503',
+    href: 'tel:+393409934503',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/luigi-cicalese-6bbb642a3',
+    href: 'https://www.linkedin.com/in/luigi-cicalese-6bbb642a3',
   },
 ];
 ---
@@ -44,7 +90,7 @@ const projects = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Luigi Cicalese — Full Stack Software Developer. Percorso, competenze e progetti."
+      content="Luigi Cicalese — Full Stack Software Developer. Percorso, competenze, progetti e contatti."
     />
     <title>Luigi Cicalese | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,93 +102,196 @@ const projects = [
   </head>
 
   <body>
-    <header class="hero">
-      <div class="hero__top">
+    <header class="banner">
+      <img
+        class="banner__image"
+        src="/images/banner.png"
+        alt="Banner professionale di Luigi Cicalese, Full Stack Software Developer presso Hightek S.r.l."
+        width="1920"
+        height="540"
+      />
+    </header>
+
+    <!-- Tre colonne in larghezza: profilo | contenuti | percorso -->
+    <div class="layout">
+      <aside class="col col--profile">
         <img
-          class="hero__banner"
-          src="/images/banner.png"
-          alt="Banner professionale di Luigi Cicalese, Full Stack Software Developer presso Hightek S.r.l."
-          width="1920"
-          height="540"
-        />
-      </div>
-
-      <div class="hero__bottom">
-        <div class="hero__intro">
-          <p class="hero__bio">
-            Sviluppatore full stack: progetto e realizzo soluzioni software chiare, utili e
-            manutenibili. Unisco il lavoro in Hightek con lo studio in Informatica, curando sia il
-            dettaglio tecnico sia l’esperienza di chi usa il prodotto.
-          </p>
-
-          <ol class="path" aria-label="Percorso">
-            {
-              path.map((step) => (
-                <li class="path__item">
-                  <span class="path__title">{step.title}</span>
-                  <span class="path__place">{step.place}</span>
-                  <span class="path__detail">{step.detail}</span>
-                </li>
-              ))
-            }
-          </ol>
-
-          <div class="hero__links">
-            <a href="#progetti">Vai ai progetti</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero__identity">
-        <img
-          class="hero__avatar"
+          class="profile__avatar"
           src="/images/profile.jpg"
           alt="Foto profilo di Luigi Cicalese"
           width="260"
           height="260"
         />
-        <div class="hero__info">
+        <div class="profile__info">
           <h1>Luigi Cicalese</h1>
-          <p class="hero__role">Full Stack Software Developer · Hightek S.r.l.</p>
+          <p class="profile__role">Full Stack Software Developer</p>
         </div>
-      </div>
-    </header>
+      </aside>
 
-    <main>
-      <section class="projects-section" id="progetti" aria-labelledby="progetti-title">
-        <div class="projects-section__head">
-          <h2 id="progetti-title">Progetti</h2>
-          <p>
-            Una selezione di lavori personali e sperimentazioni. I riferimenti qui sotto sono
-            placeholder: li aggiornerò con i progetti reali.
+      <main class="col col--main">
+        <section class="section" id="chi-sono" aria-labelledby="chi-sono-title">
+          <h2 id="chi-sono-title">Chi sono</h2>
+          <div class="prose">
+            <p>
+              Ho 31 anni e lavoro nell’informatica da quando ne avevo 16. Il percorso nasce dalla
+              curiosità: ho iniziato con C e C++, poi ho consolidato il metodo con la laurea
+              triennale in Informatica all’Università degli Studi di Salerno — architetture,
+              algoritmi, Java, web, Android, basi di dati, sistemi operativi, reti, sicurezza e
+              ingegneria del software.
+            </p>
+            <p>
+              Durante la triennale ho iniziato in Hightek come sviluppatore web: prima PHP con
+              Laravel, poi il frontend con React. Con il tempo ho preso in carico l’intera
+              infrastruttura: server, servizi Docker, prodotti per i clienti, documentazione e
+              versioning. Quel passaggio mi ha reso a tutti gli effetti un Full Stack Software
+              Developer e ha fatto da ponte tra la fine della triennale e la magistrale in Software
+              Engineering and IT Management, tuttora in corso e in chiusura.
+            </p>
+            <p>
+              In magistrale sto approfondendo mobile multipiattaforma, Data Science e Machine
+              Learning, manutenzione del software, progettazione e ottimizzazione delle basi di
+              dati, IoT, compilatori, cloud computing e penetration testing. L’obiettivo è avere
+              una visione ampia delle competenze che oggi servono davvero sul campo.
+            </p>
+            <p>
+              Mi interessa continuare a crescere su progetti stimolanti, mettendo le mie competenze
+              al servizio di persone e aziende e arricchendo al tempo stesso esperienza e bagaglio
+              culturale. Sono orientato al full stack — backend e frontend — e anche a coordinare
+              team verso obiettivi concreti: nuovi prodotti, evolutive, manutenzione, qualità del
+              rilascio e dialogo chiaro con stakeholder e clienti.
+            </p>
+          </div>
+        </section>
+
+        <section class="section" id="competenze" aria-labelledby="competenze-title">
+          <h2 id="competenze-title">Competenze</h2>
+          <p class="section__lead">
+            Un riepilogo per aree: ciò che uso ogni giorno e ciò che sto consolidando con studio e
+            pratica.
           </p>
-        </div>
-
-        <ul class="projects">
-          {
-            projects.map((project) => (
-              <li class="project">
-                <div class="project__top">
-                  <h3>{project.title}</h3>
-                  {project.placeholder && <span class="project__badge">Placeholder</span>}
+          <div class="skills">
+            {
+              skillGroups.map((group) => (
+                <div class="skills__group">
+                  <h3>{group.title}</h3>
+                  <ul>
+                    {group.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
                 </div>
-                <p>{project.description}</p>
-                <ul class="project__tags" aria-label="Tecnologie">
-                  {project.tags.map((tag) => (
-                    <li>{tag}</li>
-                  ))}
-                </ul>
-                {project.placeholder && <span class="project__soon">In arrivo</span>}
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="section" id="progetti" aria-labelledby="progetti-title">
+          <h2 id="progetti-title">Progetti</h2>
+          <p class="section__lead">
+            Alcuni lavori a cui ho contribuito e una linea di ricerca ancora in corso. Altri
+            progetti arriveranno man mano.
+          </p>
+          <ul class="projects">
+            {
+              projects.map((project) => (
+                <li class="project">
+                  <div class="project__top">
+                    <h3>{project.title}</h3>
+                    <span class="project__badge">{project.status}</span>
+                  </div>
+                  <p>{project.description}</p>
+                  <ul class="project__tags" aria-label="Ambiti">
+                    {project.tags.map((tag) => (
+                      <li>{tag}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="section" id="contatti" aria-labelledby="contatti-title">
+          <h2 id="contatti-title">Contatti</h2>
+          <p class="section__lead">
+            Per collaborazioni, idee di prodotto o semplicemente per uno scambio professionale,
+            puoi scrivermi qui.
+          </p>
+          <ul class="contacts">
+            {
+              contacts.map((contact) => (
+                <li>
+                  <span class="contacts__label">{contact.label}</span>
+                  <a
+                    href={contact.href}
+                    target={contact.href.startsWith('http') ? '_blank' : undefined}
+                    rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    {contact.value}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </main>
+
+      <aside class="col col--side">
+        <p class="side__bio">
+          Ho 31 anni e lavoro nell’informatica da quando ne avevo 16. Oggi sono Full Stack Software
+          Developer in Hightek e sto concludendo la magistrale in Software Engineering and IT
+          Management: unisco basi solide, esperienza sul campo e voglia di mettermi alla prova su
+          progetti nuovi.
+        </p>
+
+        <ol class="path" aria-label="Percorso">
+          {
+            path.map((step) => (
+              <li class="path__item">
+                <span class="path__title">{step.title}</span>
+                <span class="path__place">{step.place}</span>
+                <span class="path__detail">{step.detail}</span>
               </li>
             ))
           }
-        </ul>
-      </section>
-    </main>
+        </ol>
+      </aside>
+    </div>
+
+    <button
+      type="button"
+      class="scroll-hint"
+      aria-label="Scorri verso il basso"
+    >
+      <span class="scroll-hint__icon" aria-hidden="true"></span>
+    </button>
 
     <footer class="footer">
       <p>© {new Date().getFullYear()} Luigi Cicalese</p>
     </footer>
+
+    <script>
+      const hint = document.querySelector('.scroll-hint');
+      if (hint) {
+        // Quanti pixel scendere al click sulla freccia
+        const SCROLL_DOWN_PX = 405;
+
+        const syncHint = () => {
+          const nearTop = window.scrollY < 48;
+          hint.classList.toggle('is-hidden', !nearTop);
+        };
+
+        hint.addEventListener('click', () => {
+          window.scrollBy({
+            top: SCROLL_DOWN_PX,
+            behavior: 'smooth',
+          });
+        });
+
+        syncHint();
+        window.addEventListener('scroll', syncHint, { passive: true });
+      }
+    </script>
   </body>
 </html>
 
@@ -157,11 +306,17 @@ const projects = [
     --line: #d7e0ea;
     --white: #ffffff;
     --surface: #f5f8fb;
-    --avatar-left: calc(5rem + 20px);
-    --avatar: clamp(100px, min(15vw, calc(38vw - var(--avatar-left))), 260px);
+    --avatar: clamp(120px, 12vw, 220px);
+    /* Margine laterale a specchio: non attaccato al bordo, ma vicino sui lati */
+    --edge: clamp(1rem, 2.2vw, 2.75rem);
+    --side-width: clamp(200px, 20vw, 320px);
     --font-display: 'Outfit', sans-serif;
     --font-body: 'Source Sans 3', sans-serif;
-    --content: 1100px;
+    /* Comparsa: banner → poi sinistra, centro e destra insieme */
+    --reveal-duration: 0.9s;
+    --reveal-gap: 0.75s;
+    --reveal-1: 0.2s;
+    --reveal-2: calc(var(--reveal-1) + var(--reveal-gap));
   }
 
   * {
@@ -189,55 +344,286 @@ const projects = [
     color: var(--teal-soft);
   }
 
-  .hero {
-    position: relative;
-    width: 100%;
-    height: 100svh;
-    min-height: 560px;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-  }
-
-  .hero__top {
-    position: relative;
+  /*
+    Banner:
+    - schermi larghi: altezza fissa (vh), ritaglio da sinistra (scritte a destra restano)
+    - sotto il breakpoint: scala in proporzione (larghezza + altezza),
+      ritaglia ancora da sinistra e tiene le scritte al centro della finestra
+  */
+  .banner {
+    height: 42svh;
+    min-height: 200px;
     overflow: hidden;
     background: linear-gradient(90deg, var(--navy), var(--teal));
   }
 
-  .hero__banner {
+  .banner__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: right center;
     opacity: 0;
-    animation: fade-in 1s ease 0.15s both;
+    animation: fade-in var(--reveal-duration) ease var(--reveal-1) both;
   }
 
-  .hero__bottom {
-    background: var(--white);
+  /*
+    Scaling graduale del banner (da 2000px in giù):
+    - aspect-ratio più basso = più ritaglio laterale (soprattutto a sinistra)
+    - object-position % più bassa = scritte più verso il centro della finestra
+  */
+  @media (max-width: 2000px) {
+    .banner {
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 3.85 / 1;
+    }
+
+    .banner__image {
+      object-position: 94% center;
+    }
+  }
+
+  @media (max-width: 1800px) {
+    .banner {
+      aspect-ratio: 3.65 / 1;
+    }
+
+    .banner__image {
+      object-position: 90% center;
+    }
+  }
+
+  @media (max-width: 1600px) {
+    .banner {
+      aspect-ratio: 3.45 / 1;
+    }
+
+    .banner__image {
+      object-position: 86% center;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .banner {
+      aspect-ratio: 3.25 / 1;
+    }
+
+    .banner__image {
+      object-position: 82% center;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .banner {
+      aspect-ratio: 3.05 / 1;
+    }
+
+    .banner__image {
+      object-position: 78% center;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .banner {
+      aspect-ratio: 2.9 / 1;
+    }
+
+    .banner__image {
+      object-position: 74% center;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .banner {
+      aspect-ratio: 2.75 / 1;
+    }
+
+    .banner__image {
+      object-position: 71% center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .banner {
+      aspect-ratio: 2.55 / 1;
+    }
+
+    .banner__image {
+      object-position: 68% center;
+    }
+  }
+
+  /* Da 530px in giù: l’avatar si riduce poco alla volta */
+  @media (max-width: 530px) {
+    :root {
+      --avatar: 112px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root {
+      --avatar: 104px;
+    }
+  }
+
+  @media (max-width: 430px) {
+    :root {
+      --avatar: 96px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    :root {
+      --avatar: 88px;
+    }
+  }
+
+  @media (max-width: 340px) {
+    :root {
+      --avatar: 80px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    :root {
+      --avatar: 76px;
+    }
+  }
+
+  @media (max-width: 300px) {
+    :root {
+      --avatar: 72px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    :root {
+      --avatar: 68px;
+    }
+  }
+
+  @media (max-width: 260px) {
+    :root {
+      --avatar: 64px;
+    }
+  }
+
+  @media (max-width: 240px) {
+    :root {
+      --avatar: 60px;
+    }
+  }
+
+  @media (max-width: 220px) {
+    :root {
+      --avatar: 56px;
+    }
+  }
+
+  @media (max-width: 205px) {
+    :root {
+      --avatar: 48px;
+    }
+  }
+
+  @media (max-width: 190px) {
+    :root {
+      --avatar: 44px;
+    }
+  }
+
+  @media (max-width: 170px) {
+    :root {
+      --avatar: 44px;
+    }
+  }
+
+  /*
+    3 colonne a tutta larghezza:
+    - sinistra / destra di larghezza contenuta, ancorate ai margini
+    - centro fluido (1fr) che usa tutto lo spazio rimanente
+  */
+  .layout {
+    display: grid;
+    grid-template-columns: var(--side-width) minmax(0, 1fr) var(--side-width);
+    gap: clamp(1rem, 2vw, 2rem);
+    align-items: start;
+    width: 100%;
+    margin: 0;
+    padding: 0 var(--edge) 3.5rem;
+  }
+
+  .col--profile {
+    margin-top: calc(var(--avatar) / -2);
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: calc(var(--avatar) * 0.2) clamp(1.25rem, 4vw, 3.5rem) 1.5rem;
-  }
-
-  .hero__intro {
-    width: min(34rem, 52%);
-    padding-top: 0.35rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    justify-self: start;
+    width: 100%;
     opacity: 0;
-    animation: fade-up 0.85s ease 1.85s both;
+    animation: fade-up var(--reveal-duration) ease var(--reveal-2) both;
   }
 
-  .hero__bio {
+  .profile__avatar {
+    width: var(--avatar);
+    height: var(--avatar);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 58% 18%;
+    border: 5px solid var(--white);
+    box-shadow: 0 12px 32px rgba(7, 17, 31, 0.22);
+  }
+
+  .profile__info {
+    margin-top: 0.85rem;
+    max-width: 16rem;
+  }
+
+  .profile__info h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--navy);
+  }
+
+  .profile__role {
+    margin: 0.4rem 0 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(0.88rem, 1.4vw, 1.02rem);
+    color: var(--navy-mid);
+  }
+
+  .col--main {
+    min-width: 0;
+    padding-top: 1.15rem;
+    opacity: 0;
+    animation: fade-up var(--reveal-duration) ease var(--reveal-2) both;
+  }
+
+  .col--side {
+    justify-self: stretch;
+    width: 100%;
+    padding-top: 1.15rem;
+    opacity: 0;
+    animation: fade-up var(--reveal-duration) ease var(--reveal-2) both;
+  }
+
+  .side__bio {
     margin: 0;
     color: var(--muted);
-    font-size: clamp(0.98rem, 1.5vw, 1.08rem);
-    max-width: 42ch;
+    font-size: 0.98rem;
   }
 
   .path {
     list-style: none;
-    margin: 1.15rem 0 0;
+    margin: 1.25rem 0 0;
     padding: 0;
     display: grid;
     gap: 0.85rem;
@@ -253,139 +639,93 @@ const projects = [
   .path__title {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     color: var(--navy);
   }
 
   .path__place {
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     color: var(--teal-soft);
     font-weight: 600;
   }
 
   .path__detail {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--muted);
   }
 
-  .hero__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.1rem;
-    margin-top: 1.2rem;
+  .section {
+    padding-top: 2.1rem;
   }
 
-  .hero__links a {
+  .section:first-child {
+    padding-top: 0;
+  }
+
+  .section h2 {
+    margin: 0 0 0.65rem;
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    color: var(--navy-mid);
-    border-bottom: 1px solid transparent;
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease;
-  }
-
-  .hero__links a:hover {
-    color: var(--teal-soft);
-    border-bottom-color: var(--teal);
-  }
-
-  .hero__identity {
-    position: absolute;
-    top: 50%;
-    left: var(--avatar-left);
-    translate: 0 calc(var(--avatar) / -2);
-    z-index: 2;
-    width: var(--avatar);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero__avatar {
-    width: var(--avatar);
-    height: var(--avatar);
-    flex-shrink: 0;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: 58% 18%;
-    border: 5px solid var(--white);
-    box-shadow: 0 12px 32px rgba(7, 17, 31, 0.22);
-    opacity: 0;
-    animation: fade-scale 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
-  }
-
-  .hero__info {
-    margin-top: 0.9rem;
-    width: max-content;
-    max-width: min(28rem, calc(2 * (var(--avatar-left) + var(--avatar) / 2) - 1rem));
-    text-align: center;
-    opacity: 0;
-    animation: fade-up 0.8s ease 1.65s both;
-  }
-
-  .hero__info h1 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4.5vw, 2.6rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: var(--navy);
-  }
-
-  .hero__role {
-    margin: 0.4rem 0 0;
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-    color: var(--navy-mid);
-  }
-
-  main {
-    background: linear-gradient(180deg, var(--white) 0%, var(--surface) 100%);
-  }
-
-  .projects-section {
-    width: min(100% - 2.5rem, var(--content));
-    margin: 0 auto;
-    padding: 3.5rem 0 4rem;
-  }
-
-  .projects-section__head h2 {
-    margin: 0 0 0.55rem;
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
     letter-spacing: -0.02em;
     color: var(--navy);
   }
 
-  .projects-section__head p {
+  .section__lead,
+  .prose p {
     margin: 0;
-    max-width: 58ch;
     color: var(--muted);
+  }
+
+  .prose {
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  .skills {
+    display: grid;
+    gap: 1.15rem;
+    margin-top: 1.15rem;
+  }
+
+  .skills__group h3 {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    color: var(--teal-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .skills__group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skills__group li {
+    padding: 0.32rem 0.65rem;
+    background: #eef7f8;
+    color: var(--navy-mid);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 500;
   }
 
   .projects {
     list-style: none;
-    margin: 1.75rem 0 0;
+    margin: 1.25rem 0 0;
     padding: 0;
     display: grid;
-    gap: 1rem;
-  }
-
-  @media (min-width: 780px) {
-    .projects {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    gap: 0.95rem;
   }
 
   .project {
-    padding: 1.2rem 1.15rem 1.25rem;
+    padding: 1.05rem 1rem 1.1rem;
     border-top: 2px solid var(--teal);
-    background: var(--white);
+    background: var(--surface);
     transition: transform 0.2s ease;
   }
 
@@ -403,13 +743,13 @@ const projects = [
   .project h3 {
     margin: 0;
     font-family: var(--font-display);
-    font-size: 1.12rem;
+    font-size: 1.05rem;
     color: var(--navy);
   }
 
   .project__badge {
     flex-shrink: 0;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -420,31 +760,57 @@ const projects = [
   }
 
   .project > p {
-    margin: 0.55rem 0 0;
+    margin: 0.5rem 0 0;
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
   }
 
   .project__tags {
     list-style: none;
-    margin: 0.85rem 0;
+    margin: 0.75rem 0 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
+    gap: 0.5rem;
   }
 
   .project__tags li {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--navy-mid);
   }
 
-  .project__soon {
+  .contacts {
+    list-style: none;
+    margin: 1.15rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .contacts__label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.12rem;
+  }
+
+  .contacts a {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--muted);
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--navy-mid);
+    word-break: break-word;
+  }
+
+  .contacts a:hover {
+    color: var(--teal-soft);
+    text-decoration: underline;
   }
 
   .footer {
@@ -452,11 +818,64 @@ const projects = [
     text-align: center;
     color: var(--muted);
     font-size: 0.9rem;
-    background: var(--surface);
+    border-top: 1px solid var(--line);
   }
 
   .footer p {
     margin: 0;
+  }
+
+  .scroll-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 1.25rem;
+    z-index: 20;
+    translate: -50% 0;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 24px rgba(7, 17, 31, 0.12);
+    cursor: pointer;
+    opacity: 1;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease,
+      transform 0.2s ease;
+  }
+
+  .scroll-hint.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .scroll-hint:hover {
+    transform: translateY(2px);
+  }
+
+  .scroll-hint__icon {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-right: 2px solid var(--navy-mid);
+    border-bottom: 2px solid var(--navy-mid);
+    rotate: 45deg;
+    translate: 0 -0.15rem;
+    animation: scroll-bounce 1.4s ease-in-out infinite;
+  }
+
+  @keyframes scroll-bounce {
+    0%,
+    100% {
+      translate: 0 -0.28rem;
+    }
+    50% {
+      translate: 0 0.05rem;
+    }
   }
 
   @keyframes fade-in {
@@ -468,21 +887,10 @@ const projects = [
     }
   }
 
-  @keyframes fade-scale {
-    from {
-      opacity: 0;
-      transform: scale(0.92);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(12px);
     }
     to {
       opacity: 1;
@@ -490,23 +898,29 @@ const projects = [
     }
   }
 
-  @media (max-width: 900px) {
-    .hero {
-      height: auto;
-      min-height: 100svh;
-      grid-template-rows: min(38vh, 260px) auto;
+  @media (max-width: 1100px) {
+    .layout {
+      grid-template-columns: clamp(160px, 22vw, 220px) minmax(0, 1fr) clamp(180px, 24vw, 260px);
+    }
+  }
+
+  @media (max-width: 860px) {
+    .layout {
+      grid-template-columns: 1fr;
+      padding: 0 var(--edge) 2.5rem;
     }
 
-    .hero__bottom {
-      padding: calc(var(--avatar) / 2 + 6.5rem) 1.25rem 2rem;
+    .col--profile {
+      margin-top: calc(var(--avatar) / -2);
+      justify-self: center;
+      max-width: 20rem;
     }
 
-    .hero__intro {
+    .col--main,
+    .col--side {
+      padding-top: 0.5rem;
+      justify-self: stretch;
       width: 100%;
-    }
-
-    .hero__bio {
-      max-width: none;
     }
   }
 
@@ -515,11 +929,15 @@ const projects = [
       scroll-behavior: auto;
     }
 
-    .hero__banner,
-    .hero__avatar,
-    .hero__info,
-    .hero__intro {
+    .banner__image,
+    .col--profile,
+    .col--main,
+    .col--side {
       opacity: 1;
+      animation: none;
+    }
+
+    .scroll-hint__icon {
       animation: none;
     }
 
